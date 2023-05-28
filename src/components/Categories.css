@@ -1,0 +1,36 @@
+.cat-con{
+    
+    width : 99vw;
+    /* background-color: aqua; */
+    margin-top: 12vh;
+    border-bottom: 1px solid grey;
+}
+
+.cat-con ul{
+    display : flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+}
+
+.cat-con ul li{
+    list-style-type: none;
+}
+
+.cat-con ul li div{
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: small;
+}
+
+.cat-con ul li img{
+    margin-bottom: 10px;
+}
+
+.cat-con ul li:hover{
+    color: blue;
+}

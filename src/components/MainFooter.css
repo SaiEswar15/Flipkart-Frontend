@@ -1,0 +1,27 @@
+.main-footer-con{
+    background-color: rgb(20, 33, 33);
+    color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.upper-footer{
+    display : flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+
+.upper-footer-heading{
+    list-style-type: none;
+    margin-bottom: 10px;
+}
+
+.upper-footer-text{
+    list-style-type: none;
+    font-size: 12px;
+}
+

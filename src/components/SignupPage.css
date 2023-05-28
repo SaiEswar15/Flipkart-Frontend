@@ -1,0 +1,80 @@
+.signuppage-con{
+    display : flex;
+    flex-direction : row;
+    justify-content : center;
+    margin-top : 30vh;
+    margin-left : auto;
+    margin-right: auto;
+
+  }
+  .signuppage-dec{
+    width : 200px;
+    /* height : 200px; */
+    padding : 20px;
+    background-color: orangered;
+    border : 1px solid grey;
+    color : white;
+    
+  }
+  
+  .signuppage-dec h1{
+    margin-bottom : 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  .signuppage-dec p{
+    color : whitesmoke;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+  }
+
+  .signuppage-form {
+    
+    display : flex;
+    flex-direction: column;
+    justify-content : center;
+    align-items: center;
+    border : 1px solid grey;
+    padding : 20px;
+    width : 200px;
+    /* height : 200px; */
+  }
+  
+  .signuppage-form input {
+    
+    margin-bottom: 20px;
+    border : 0px ;
+    border-bottom : 2px solid blue;
+    padding : 5px;
+  }
+  
+  .signuppage-form input:focus 
+  {
+    outline : none;
+  }
+  
+  .signuppage-form button {
+   
+    background-color: orangered;
+    width: 100%;
+    color : white;
+    padding : 5px;
+    margin-bottom: 10px;
+    border: 0px;
+  }
+
+  .signup-notification{
+    
+    width : 99wh;
+    display: flex;
+    justify-content: center;
+    
+  }
+
+  .signup-notification p{
+    color: black;
+    padding: 10px 45px;
+    border-radius: 5px;
+  }
+  
+  

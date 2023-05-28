@@ -1,0 +1,141 @@
+/* .searchPage-container{
+    margin-top: 20vh;
+}
+
+.searchPage-item-container{
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.searchPage-image-container{
+    background-color: black;
+}
+
+.searchPage-details-container{
+    background-color: blueviolet;
+}
+
+.searchPage-cost-container{
+    background-color: brown;
+} */
+
+.searchpage-space{
+    width : 99vw;
+    
+    margin-top: 12vh;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    column-gap: 10px;
+}
+
+.searchpage-features-con{
+    background-color: white;
+    /* border-right: 1px solid grey; */
+}
+
+.searchpage-con{
+    background-color: white;
+    border : 1px solid grey;
+    margin-right: 10px;
+}
+
+.searchpage-item-con{
+    background-color: white;
+    
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 40px;
+    /* margin-bottom: 5px; */
+    display: grid;
+    grid-template-columns: 1fr 2fr 1.5fr;
+    column-gap: 15px;
+    border-bottom: 1px solid grey;
+    
+}
+
+.searchPage-image-container{
+    background-color:white;
+    height : 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    
+}
+
+.searchPage-image-container img{
+    
+    width : 180px;
+}
+
+.searchPage-details-container{
+    background-color: white;
+    height : 40vh;
+}
+
+.searchPage-details-container div{
+    margin-left : 30px;
+    
+}
+
+
+.searchPage-cost-container{
+    background-color: white;
+    height : 40vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: top;
+
+}
+
+.searchPage-cost-container div img{
+    margin-top: 20px;
+}
+
+.searchPage-cost-container div div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.searchPage-title{
+    color: black;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    
+    height : 26px;
+    overflow: hidden;
+}
+
+.searchPage-price-strike{
+    text-decoration: line-through;
+}
+
+.searchPage-link{
+    text-decoration: none;
+    color: black;
+}
+
+.searchPage-amount{
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+
+.no-p-f{
+    margin-top: 10px ;
+    
+    text-align: center;
+    display: inline;
+    position: absolute;
+    left : 40vw;
+    
+}

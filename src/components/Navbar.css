@@ -1,0 +1,112 @@
+
+.nav-container{
+    height : 10vh;
+    width : 99vw;
+    background-color: blue;
+    display : flex;
+    flex-direction : row;
+    justify-content: space-around;
+    align-items : center;
+    position : fixed;
+    z-index: 3;
+    top : 0px;
+}
+
+.link{
+    text-decoration: none;
+    color: yellow;
+}
+
+.scart{
+    color: yellow;
+}
+
+.logo-con
+{
+   margin-left: 10px;
+    padding : 20px;
+    
+}
+
+.logo-con img{
+    padding-top: 5px;
+    width : 120px;
+}
+
+.search-con
+{
+    
+    flex : 2;
+}
+
+.search-con form
+{
+    
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+
+.search-con-input
+{
+    flex: 2;
+    height : 25px;
+    padding : 5px 10px;
+    border : 0px;
+
+}
+
+.search-con-input:focus{
+    outline : 0px;
+}
+
+.search-con-button
+{
+    height : 35px;
+    background-color: white;
+    border : 0px;
+    
+}
+
+.search-icon{
+    background-color: white;
+    color: blue;
+}
+
+.login-con
+{
+    background-color: blue;
+    padding : 20px;
+}
+
+.login-con button{
+    background-color: orangered;
+    padding : 5px 15px;
+    color : white;
+    border : 0px ;
+}
+
+.cart-con{
+    background-color: blue;
+    padding : 20px;
+    margin-right : 10px;
+    
+}
+
+
+.counter{
+    background-color: orangered;
+    border-radius: 30%;
+    padding : 0px 5px;
+    font-weight: bold;
+    border : 1.5px solid black;
+    
+}
+
+
+
+
+

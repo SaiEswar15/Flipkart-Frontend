@@ -1,0 +1,153 @@
+/* .carousal-container1{
+    width : 99vw;
+    height : 40vh;
+    background-color: blueviolet;
+    margin-top: 10px;
+    display : flex;
+    flex-direction: row;
+
+}
+
+.carousal-block1{
+    height : 40vh;
+    flex : 0.5;
+    background-color: blue;
+}
+
+.carousal-block2{
+    height : 40vh;
+    flex : 2;
+    background-color: rgb(0, 255, 4);
+}
+
+.carousal-block2 Carousel{
+    flex:2;
+}
+
+.carousal-block3{
+    height : 40vh;
+    flex : 0.5;
+    background-color: rgb(250, 20, 104);
+} */
+
+.carousal-container1{
+    
+    /* background-color: blueviolet; */
+    height : 40vh;
+    margin-top: 10px;
+    display : flex;
+    flex-direction: row;
+}
+
+.carousal-block1{
+    
+    width : 16vw;
+    height : 40vh;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; 
+    position: relative;
+}
+
+.carousal-block1 img{
+    width : 16vw;
+    position: relative;
+}
+
+.carousal-block1-buttons
+{
+    position : absolute;
+    text-align: center;
+    top : 20px;
+    font-family: sans-serif;
+    font-size: 35px;
+    
+    
+}
+
+.carousel-container{
+    width : 68vw;
+    z-index: 2;
+    
+    /* background-color: aqua; */
+    /* display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; */
+}
+
+.carousal-block2{
+    
+    width : 16vw;
+    height : 40vh;
+    background-color: blue;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousal-block2 img{
+    width : 15vw;
+    height : 40vh;
+    position: relative;
+}
+
+.carousel-product-container{
+    /* background-color: chartreuse; */
+    width : 20vw;
+    height : 40vh;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-image-container{
+    
+    height : 20vh;
+    width : 10vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: black; */
+    
+}
+
+.carousel-image-container img:hover{
+    width : 105px;
+}
+
+.carousel-title-container
+{
+    height : 5vh;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.carousel-title-container:hover{
+    color: blue;
+    font-size: large;
+}
+
+.carousel-price-container
+{
+    height : 5vh;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: green;
+}
+.carousel-price-container:hover{
+    color: blue;
+    font-size: large;
+}
+

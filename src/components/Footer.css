@@ -1,0 +1,16 @@
+.footer-con
+{
+    margin: 15px;
+    
+}
+
+.footer-heading{
+    font-weight: bold;
+    color: grey;
+}
+
+.footer-para{
+    color : grey;
+    font-size: 13px;
+}
+

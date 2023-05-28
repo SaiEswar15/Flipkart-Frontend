@@ -1,0 +1,79 @@
+.loginpage-con{
+    display : flex;
+    flex-direction : row;
+    justify-content : center;
+    margin-top : 30vh;
+    margin-left : auto;
+    margin-right: auto;
+    
+    
+  }
+  .loginpage-dec{
+    width : 200px;
+    height : 200px;
+    padding : 20px;
+    background-color: blue;
+    border : 1px solid grey;
+    color : white;
+    
+  }
+  
+  .loginpage-dec h1{
+    margin-bottom : 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  .loginpage-dec p{
+    color : yellow;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+  }
+
+  .loginpage-form {
+    
+    display : flex;
+    flex-direction: column;
+    justify-content : center;
+    align-items: center;
+    border : 1px solid grey;
+    padding : 20px;
+    width : 200px;
+    height : 200px;
+  }
+  
+  .loginpage-form input {
+    
+    margin-bottom: 20px;
+    border : 0px ;
+    border-bottom : 2px solid orangered;
+    padding : 5px;
+  }
+  
+  .loginpage-form input:focus 
+  {
+    outline : none;
+  }
+  
+  .loginpage-form button {
+   
+    background-color: blue;
+    width: 100%;
+    color : white;
+    padding : 5px;
+    margin-bottom: 10px;
+    border: 0px;
+  }
+
+  .login-notification{
+    
+    width : 99wh;
+    display: flex;
+    justify-content: center;
+    
+  }
+  
+  .login-notification p{
+    color: black;
+    padding: 10px 45px;
+    border-radius: 5px;
+  }

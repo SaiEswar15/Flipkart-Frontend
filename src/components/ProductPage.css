@@ -1,0 +1,136 @@
+.product-page-con{
+    width : 1fr;
+    
+    margin-top: 17vh;
+    margin-left : 10px;
+    margin-right : 10px;
+    background-color: white;
+    display : grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap : 10px;
+}
+
+.product-image-con{
+    
+    height : 80vh;
+    /* background-color: brown; */
+    display : grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.image-holder{
+    height : 60vh;
+    background-color: white;
+    margin : 10px 10px;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+}
+
+.product-picture{
+    width : 300px;
+    
+    
+    
+}
+
+.image-below-buttons{
+    height : 10vh;
+    margin-top: 10px;
+    background-color: white;
+    margin : 10px 10px;
+    display : flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.addtocart-btn
+{
+    background-color: orangered;
+    padding: 10px 20px;
+    margin-right: 20px;
+    font-size: 20px;
+
+}
+
+.addtowishlist-btn{
+    background-color: orange;
+    padding: 10px 20px;
+    font-size: 20px;
+}
+
+.product-details-con{
+   
+    /* height : 80vh; */
+    background-color: white;
+}
+
+.product-details-main{
+    height : 80vh;
+    background-color: white;
+    margin : 10px 10px;
+}
+
+.product-nav{
+    color : blue;
+    margin-bottom: 10px;
+}
+
+.product-title{
+    color : orangered;
+    font-size: 20px;
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+
+.product-cat{
+    margin-bottom: 10px;
+}
+.product-cat-span{
+    color: blue;
+    
+}
+
+.product-rating{
+    margin-top: 10px;
+    
+}
+
+.product-rating-rate{
+    font-size: 20px;
+    padding-bottom: 15px;
+    background-color: green;
+    padding: 5px;
+    display : inline;
+    color: white;
+}
+
+.starIcon{
+    width : 0.5px;
+    height : 0.5px;
+    margin-top: 1px;
+    /* background-color: blue; */
+}
+
+.product-price-para{
+    margin-top: 10px;
+    
+}
+.product-price{
+    font-size: 25px;
+}
+
+.strike {
+    text-decoration: line-through;
+}
+
+.off {
+    padding-left : 10px;
+}
