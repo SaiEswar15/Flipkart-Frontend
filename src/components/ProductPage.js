@@ -8,21 +8,29 @@ import axios from "axios";
 import { apiActions } from '../store/apiSlice';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 
+
+
 function ProductPage() {
 
   const productdata = useSelector((state) => state.api.productData);
+  const token= useSelector((state) => state.auth.token);
 
   const dispatch = useDispatch();
+  
 
   function addToCartHandler(productdata) {
 
-    axios.get("http://localhost:8081/api/v1/cart/cartData")
+    axios.get("http://localhost:8081/api/v1/cart/cartData",{
+      headers: {
+        'Authorization': 'Bearer ' + token
+      }
+    })
       .then((res) => {
-        console.log(res.data);
-        const data = res.data;
+        console.log("three")
+        dispatch(apiActions.addCartItemsToState(res.data))
+        let dataToCalculate = res.data;
 
-
-        let matchedData = data.find((el) => {
+        let matchedData = dataToCalculate.find((el) => {
           return productdata._id === el._id
         })
 
@@ -38,14 +46,23 @@ function ProductPage() {
             Image: productdata.Image, 
             Category: productdata.Category 
           })
+          .then((res)=>{
+            dispatch(apiActions.addCartItemsToState(res.data))
+          })
         }
         else {
 
           dispatch(apiActions.addCount())
           axios.patch(`http://localhost:8081/api/v1/cart/patch/${productdata._id}`)
+          .then((res)=>{
+            dispatch(apiActions.addCartItemsToState(res.data))
+          })
+          
         }
       })
   }
+
+  
   
   return (
     <div className="product-page-con">

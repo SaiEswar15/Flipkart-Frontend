@@ -14,7 +14,7 @@ import Categories from './Categories';
 import CarouselHome from './CarouselHome';
 import CarouselProducts from './CarouselProducts';
 import CarouselProducts2 from './CarouselProducts2';
-
+import { useNavigate } from "react-router-dom"
 
 function Home() {
 
@@ -23,6 +23,11 @@ function Home() {
     })
 
     
+    const Navigate = useNavigate();
+
+    const token = useSelector((state)=>{
+        return state.auth.token;
+    })
 
     const dispatch = useDispatch();
 
@@ -30,12 +35,24 @@ function Home() {
 
     useEffect(() => {
 
-        axios.get("http://localhost:8081/api/v1/items/")
+        axios.get("http://localhost:8081/api/v1/items/",{
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        })
             .then((res) => {
+              if (res.data === 'Token Not found')
+            {
+                Navigate("/loginpage")
+            }
+            else
+            {
               dispatch(apiActions.increment(res.data))
+            }
+              
             })
 
-    }, [dispatch])
+    }, [dispatch,Navigate,token])
 
     function productHandler(el)
     {

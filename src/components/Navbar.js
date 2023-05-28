@@ -8,13 +8,18 @@ import {Link} from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import {useSelector,useDispatch} from "react-redux";
-import { apiActions } from '../store/apiSlice';
+import  { apiActions } from '../store/apiSlice';
+import { authActions } from '../store/authSlice';
 
 
 
 function Navbar() {
 
     const Navigate = useNavigate();
+
+    const token = useSelector((state)=>{
+        return state.auth.token;
+    })
 
     const searchData = useSelector((state)=>{
         return state.api.searchData;
@@ -29,39 +34,58 @@ function Navbar() {
         return state.auth.loggedin;
     })
 
-    // const cartData = useSelector((state)=>{
-    //     return state.api.cartData;
-    // })
+    const cartData = useSelector((state)=>{
+        return state.api.cartData;
+    })
 
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        axios.get("http://localhost:8081/api/v1/cart/cartData")
+        console.log("token",token)
+        axios.get("http://localhost:8081/api/v1/cart/cartData",{
+            headers: {
+              'Authorization': 'Bearer ' + token
+            }
+          })
         .then((res)=>
         {
-            const data = res.data;
-            // console.log(data);
-
-            let quantity = 0;
-            if (data.length<1)
+            console.log("one")
+            dispatch(apiActions.addCartItemsToState(res.data))
+            if (res.data === 'Token Not found')
             {
-                quantity = 0;
+                Navigate("/loginpage")
             }
             else
             {
-                const quanArray = data.map((el)=>{
-                    return el.Quantity;
-                })
-                // console.log(quanArray)
-                quantity = quanArray.reduce((total,el)=>{
-                    return total+el;
-                })
+                
+
+                let quantity = 0;
+                if (cartData.length<1)
+                {
+                    quantity = 0;
+                }
+                else
+                {
+                    const quanArray = cartData && cartData.map((el)=>{
+                        return el.Quantity;
+                    })
+                    // console.log(quanArray)
+                    quantity = quanArray.reduce((total,el)=>{
+                        return total+el;
+                    })
+                }
+                
+                console.log("two");
+                dispatch(apiActions.postCounter(quantity))
             }
             
-            // console.log(quantity);
-            dispatch(apiActions.postCounter(quantity))
         })
-    },[dispatch])
+    },[dispatch,Navigate,token])
+
+    function logoutHandler()
+    {
+        dispatch(authActions.updateToken(""))
+    }
     
 
     function submitHandler(e)
@@ -72,13 +96,27 @@ function Navbar() {
         const input = data.get("search");
         console.log(input);
         
-        axios.get(`http://localhost:8081/api/v1/products/?category=${input}`)
+        axios.get(`http://localhost:8081/api/v1/products/?category=${input}`,{
+            headers: {
+              'Authorization': 'Bearer ' + token
+            }
+          })
         .then((res)=>{
-            dispatch(apiActions.decrement(res.data))
+            
+            if (res.data === 'Token Not found')
+            {
+                Navigate("/loginpage")
+            }
+            else
+            {
+                dispatch(apiActions.decrement(res.data))
+                console.log(searchData);
+                Navigate("/searchpage");
+            }
+            
         })
 
-        console.log(searchData);
-        Navigate("/searchpage");
+        
     }
   return (
   <>
@@ -99,7 +137,7 @@ function Navbar() {
         {loggedin ?
         
         <div className = "login-con">
-                <button >Logout</button>
+                <button onClick = {logoutHandler}>Logout</button>
         </div>
         :
         <Link to="/loginpage">

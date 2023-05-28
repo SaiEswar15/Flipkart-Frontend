@@ -13,6 +13,11 @@ import { apiActions } from '../store/apiSlice';
 
 function CarouselProducts2() {
 
+    const token = useSelector((state)=>{
+        return state.auth.token;
+    })
+
+
     const apiData = useSelector((state) => {
         return state.api.apiData;
     })
@@ -58,23 +63,49 @@ function CarouselProducts2() {
 
     function productHandler(el) {
 
-        axios.get(`http://localhost:8081/api/v1/products/?category=${el.Category}`)
+        axios.get(`http://localhost:8081/api/v1/products/?category=${el.Category}`,{
+            headers: {
+              'Authorization': 'Bearer ' + token
+            }
+          })
             .then((res) => {
-                dispatch(apiActions.decrement(res.data))
+                if (res.data === 'Token Not found')
+                {
+                    Navigate("/loginpage")
+                }
+                else
+                {
+                    dispatch(apiActions.decrement(res.data))
+                    Navigate("/searchpage");
+                }
+                
             })
 
-        Navigate("/searchpage");
+        
     }
 
     function viewAllElectronics()
     {
         const category1 = "Kitchen Appliances";
         const category2 = "Small Home Appliances";
-        axios.get(`http://localhost:8081/api/v1/products/searchBySubCategory/?category1=${category1}&category2=${category2}`)
+        axios.get(`http://localhost:8081/api/v1/products/searchBySubCategory/?category1=${category1}&category2=${category2}`,{
+            headers: {
+              'Authorization': 'Bearer ' + token
+            }
+          })
         .then((res)=>{
-            dispatch(apiActions.decrement(res.data))
+            if (res.data === 'Token Not found')
+            {
+                Navigate("/loginpage")
+            }
+            else
+            {
+                dispatch(apiActions.decrement(res.data))
+                Navigate("/searchpage");
+            }
+            
         })
-        Navigate("/searchpage");
+        
     }
 
     return (

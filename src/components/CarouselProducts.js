@@ -12,7 +12,10 @@ import { apiActions } from '../store/apiSlice';
 
 function CarouselProducts() {
 
-
+    const token = useSelector((state)=>{
+        return state.auth.token;
+    })
+    
     const apiData = useSelector((state) => {
         return state.api.apiData;
     })
@@ -66,21 +69,47 @@ function CarouselProducts() {
 
     function productHandler(el)
     {
-        axios.get(`http://localhost:8081/api/v1/products/?category=${el.Category}`)
+        axios.get(`http://localhost:8081/api/v1/products/?category=${el.Category}`,{
+            headers: {
+              'Authorization': 'Bearer ' + token
+            }
+          })
         .then((res)=>{
-            dispatch(apiActions.decrement(res.data))
+            if (res.data === 'Token Not found')
+            {
+                Navigate("/loginpage")
+            }
+            else
+            {
+                dispatch(apiActions.decrement(res.data))
+                Navigate("/searchpage");
+            }
+            
         })
-        Navigate("/searchpage");
+        
     }
 
     function viewAllElectronics()
     {
         console.log("hai")
-        axios.get(`http://localhost:8081/api/v1/products/searchBySingle/?category1=Electronics`)
+        axios.get(`http://localhost:8081/api/v1/products/searchBySingle/?category1=Electronics`,{
+            headers: {
+              'Authorization': 'Bearer ' + token
+            }
+          })
         .then((res)=>{
-            dispatch(apiActions.decrement(res.data))
+            if (res.data === 'Token Not found')
+            {
+                Navigate("/loginpage")
+            }
+            else
+            {
+                dispatch(apiActions.decrement(res.data))
+                Navigate("/searchpage");
+            }
+            
         })
-        Navigate("/searchpage");
+        
     }
 
     return (

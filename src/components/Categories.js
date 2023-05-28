@@ -18,16 +18,31 @@ function Categories() {
         return state.category
     })
 
+    const token = useSelector((state)=>{
+        return state.auth.token;
+    })
+
     useEffect(()=>{
 
-        axios.get("http://localhost:8081/api/v1/categories/")
+        axios.get("http://localhost:8081/api/v1/categories/",{
+            headers: {
+              'Authorization': 'Bearer ' + token
+            }
+          })
         .then((res)=>{
             // console.log(res.data)
+            if (res.data === 'Token Not found')
+            {
+                Navigate("/loginpage")
+            }
+            else
+            {
+                dispatch(categoryActions.addData(res.data))
+            }
             
-            dispatch(categoryActions.addData(res.data))
         })
 
-    },[dispatch])
+    },[dispatch,Navigate,token])
 
     function categoryHandler(el)
     {
@@ -35,21 +50,46 @@ function Categories() {
         {
             let category1 = "Kitchen Appliances"
             let category2 = "Small Home Appliances"
-            axios.get(`http://localhost:8081/api/v1/products/searchBySubCategory?category1=${category1}&category2=${category2}`)
+            axios.get(`http://localhost:8081/api/v1/products/searchBySubCategory?category1=${category1}&category2=${category2}`,{
+                headers: {
+                  'Authorization': 'Bearer ' + token
+                }
+              })
             .then((res)=>{
-                console.log(res.data);
-                dispatch(apiActions.decrement(res.data))
-                Navigate("/searchpage")
+                if (res.data === 'Token Not found')
+                {
+                    Navigate("/loginpage")
+                }
+                else
+                {
+                    console.log(res.data);
+                    dispatch(apiActions.decrement(res.data))
+                    Navigate("/searchpage")
+                }
+                
             })
         }
 
         if (el.category === "Mobiles" || el.category === "Electronics")
         {
-            axios.get(`http://localhost:8081/api/v1/products/?category=${el.category}`)
+            axios.get(`http://localhost:8081/api/v1/products/?category=${el.category}`,{
+                headers: {
+                  'Authorization': 'Bearer ' + token
+                }
+              })
             .then((res)=>{
-                console.log(res.data);
-                dispatch(apiActions.decrement(res.data))
-                Navigate("/searchpage")
+
+                if (res.data === 'Token Not found')
+                {
+                    Navigate("/loginpage")
+                }
+                else
+                {
+                    console.log(res.data);
+                    dispatch(apiActions.decrement(res.data))
+                    Navigate("/searchpage")
+                }
+                
             })
         }
 
@@ -57,21 +97,45 @@ function Categories() {
         {
             let category1 = "Clothing"
             
-            axios.get(`http://localhost:8081/api/v1/products/?category=${category1}`)
+            axios.get(`http://localhost:8081/api/v1/products/?category=${category1}`,{
+                headers: {
+                  'Authorization': 'Bearer ' + token
+                }
+              })
             .then((res)=>{
-                console.log(res.data);
-                dispatch(apiActions.decrement(res.data))
-                Navigate("/searchpage")
+                if (res.data === 'Token Not found')
+                {
+                    Navigate("/loginpage")
+                }
+                else
+                {
+                    console.log(res.data);
+                    dispatch(apiActions.decrement(res.data))
+                    Navigate("/searchpage")
+                }
+                
             })
         }
 
         if (el.category === "Top Offers")
         {
-            axios.get(`http://localhost:8081/api/v1/products/searchBySingle`)
+            axios.get(`http://localhost:8081/api/v1/products/searchBySingle`,{
+                headers: {
+                  'Authorization': 'Bearer ' + token
+                }
+              })
             .then((res)=>{
-                console.log(res.data);
-                dispatch(apiActions.decrement(res.data))
-                Navigate("/searchpage")
+                if (res.data === 'Token Not found')
+                {
+                    Navigate("/loginpage")
+                }
+                else
+                {
+                    console.log(res.data);
+                    dispatch(apiActions.decrement(res.data))
+                    Navigate("/searchpage")
+                }
+                
             })
         }
         

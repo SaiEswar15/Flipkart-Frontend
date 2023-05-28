@@ -12,77 +12,107 @@ import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 function Cart() {
 
     const dispatch = useDispatch();
-    
-    const items = useSelector((state)=>{
-        console.log("items",state.api.cartData)
-        return state.api.cartData
-    })
 
-    const total = useSelector((state)=>{
-       
-        return state.api.totalPrice;
-    })
-
-    const counter = useSelector((state)=>{
-        return state.api.counter;
-    })
+    const items = useSelector((state)=>state.api.cartData)
+    const counter = useSelector((state)=>state.api.counter)
+    const total = useSelector((state)=>state.api.totalPrice)
+    const token = useSelector((state)=>state.auth.token)
 
     const cartHandler = (el)=>
     {
-        axios.delete(`http://localhost:8081/api/v1/cart/delete/${el._id}`);
+        axios.delete(`http://localhost:8081/api/v1/cart/delete/${el._id}`)
+        .then((res=>{
 
-        dispatch(apiActions.removeQuantity(el.Quantity))
+            console.log("five")
+            dispatch(apiActions.addCartItemsToState(res.data))
+            //removecount
+            //removequantity
+            console.log("six")
+            dispatch(apiActions.removeQuantity(el.Quantity))
+            console.log("seven")
+            dispatch(apiActions.removeTotal(el.Quantity*el.Price))
+            
+        }))
+
+        
     }
 
     function addQuantityHandler(productdata) {
 
-        dispatch(apiActions.addCount())
+        
         axios.patch(`http://localhost:8081/api/v1/cart/patch/${productdata._id}`)
-
+        .then((res=>{
+            dispatch(apiActions.addCartItemsToState(res.data))
+            dispatch(apiActions.addCount())
+            dispatch(apiActions.updateTotal(productdata.Price))
+            
+        }))
+        
     }
 
     function reduceQuantityHandler(el) {
 
         if (el.Quantity>1)
         {
-            dispatch(apiActions.reduceCount())
+            
             axios.patch(`http://localhost:8081/api/v1/cart/reduce/${el._id}`)
+            .then((res=>{
+                dispatch(apiActions.addCartItemsToState(res.data))
+                dispatch(apiActions.removeQuantity(1))
+                dispatch(apiActions.removeTotal(el.Price))
+                
+            }))
+            
         }
 
         else
         {
-            axios.delete(`http://localhost:8081/api/v1/cart/delete/${el._id}`);
-            dispatch(apiActions.removeQuantity(el.Quantity))
+            axios.delete(`http://localhost:8081/api/v1/cart/delete/${el._id}`)
+            .then((res=>{
+                dispatch(apiActions.addCartItemsToState(res.data))
+                
+                dispatch(apiActions.removeQuantity(el.Quantity))
+                dispatch(apiActions.removeTotal(el.Quantity*el.Price))
+            }))
+            
         }
     }
 
     useEffect(()=>{
-      axios.get("http://localhost:8081/api/v1/cart/cartData")
-      .then((res)=>{
+  
+        axios.get("http://localhost:8081/api/v1/cart/cartData",{
+            headers: {
+              'Authorization': 'Bearer ' + token
+            }
+          })
+        .then((res)=>{
         
-        console.log("axios",res.data);
+        console.log("three")
         dispatch(apiActions.addCartItemsToState(res.data))
 
         let totalAmount = 0;
-        if (res.data <1)
+        
+        if (res.data.length <1)
         {
+            
             totalAmount = 0
-            console.log("ifnot",totalAmount);
         }
         else{
+            
             const totalArray = res.data.map((el)=>{
                 return el.Quantity*el.Price
             })
-            console.log("array",totalArray)
             totalAmount = totalArray.reduce((total,el)=>{
                 return total+el;
             })
-            console.log("total",totalAmount)
+            
         }
-        
+        console.log("four")
         dispatch (apiActions.addTotal(totalAmount));
+        
       })
-    },[dispatch,counter])
+      
+    },[dispatch,token])
 
     //keep a check that i removed the dependecies [dispatch, cartHandler]
  
@@ -90,7 +120,7 @@ function Cart() {
     <div className = "cartpage-con">
         <div className = "cartitems-con">
             <p className='heading'>Your Items</p>
-            {items ? <>{items.map((el)=>{
+            {items && items.map((el)=>{
             return (
             <div className = "singleitem-con" key = {el._id}>
                 <div className = "image-con">
@@ -109,13 +139,13 @@ function Cart() {
                         <p className = "p cartitems-price"> <CurrencyRupeeIcon/><span>{parseInt(el.Price)}</span></p>
                         <p className = "p cartitems-total-quantity">{el.Quantity} * {el.Price} = $ {el.Quantity * parseInt(el.Price)}</p>
                         
-                        <button className = "p remove-btn" onClick = {()=>{cartHandler(el)}}>Remove from cart</button>
+                        <button className = "p remove-btn" onClick = {()=>{cartHandler(el)}} >Remove from cart</button>
                         
                     </div>
                 </div>
             </div>
             )
-        })}</> : null}
+        })}
             
             
         </div>

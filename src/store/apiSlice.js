@@ -75,12 +75,26 @@ const apiSlice = createSlice({
                 totalPrice :action.payload
             }
         },
+        updateTotal (state,action)
+        {
+            return {
+                ...state,
+                totalPrice :state.totalPrice + action.payload
+            }
+        },
 
         removeQuantity(state,action)
         {
             return {
                 ...state,
                 counter : state.counter-action.payload
+            }
+        },
+        removeTotal(state,action)
+        {
+            return {
+                ...state,
+                totalPrice :state.totalPrice-action.payload
             }
         }
     }
