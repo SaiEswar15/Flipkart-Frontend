@@ -34,7 +34,7 @@ function Navbar() {
         return state.auth.loggedin;
     })
 
-    const cartData = useSelector((state)=>{
+    const items = useSelector((state)=>{
         return state.api.cartData;
     })
 
@@ -50,7 +50,7 @@ function Navbar() {
         .then((res)=>
         {
             console.log("one")
-            dispatch(apiActions.addCartItemsToState(res.data))
+            // dispatch(apiActions.addCartItemsToState(res.data))
             if (res.data === 'Token Not found')
             {
                 Navigate("/loginpage")
@@ -60,13 +60,13 @@ function Navbar() {
                 
 
                 let quantity = 0;
-                if (cartData.length<1)
+                if (items.length<1)
                 {
                     quantity = 0;
                 }
                 else
                 {
-                    const quanArray = cartData && cartData.map((el)=>{
+                    const quanArray = items && items.map((el)=>{
                         return el.Quantity;
                     })
                     // console.log(quanArray)
@@ -80,7 +80,7 @@ function Navbar() {
             }
             
         })
-    },[dispatch,Navigate,token])
+    },[dispatch,Navigate,token,items])
 
     function logoutHandler()
     {
