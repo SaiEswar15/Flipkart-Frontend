@@ -7,6 +7,7 @@ import {Link} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { apiActions } from '../store/apiSlice';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import Navbar from './Navbar';
 
 function SearchPage() {
 
@@ -26,7 +27,8 @@ function SearchPage() {
   
 
   return (
-
+    <>
+    <Navbar></Navbar>
     <div className='searchpage-space'>
       {searchData.length>=1 ? <>
       <div className='searchpage-features-con'></div>
@@ -78,6 +80,7 @@ function SearchPage() {
       </div>
       </> : <h1 className = "no-p-f">No Products found</h1>}
     </div>
+    </>
   )
 }
 

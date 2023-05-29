@@ -8,6 +8,7 @@ import axios from "axios";
 import { useEffect } from 'react';
 import { apiActions } from '../store/apiSlice';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import Navbar from './Navbar';
 
 function Cart() {
 
@@ -117,6 +118,8 @@ function Cart() {
     //keep a check that i removed the dependecies [dispatch, cartHandler]
  
   return (
+    <>
+    <Navbar></Navbar>
     <div className = "cartpage-con">
         <div className = "cartitems-con">
             <p className='heading'>Your Items</p>
@@ -156,6 +159,7 @@ function Cart() {
             <Link to = "/success"><button className = "place-order">Place your Order</button></Link>
         </div>
     </div>
+    </>
   )
 }
 

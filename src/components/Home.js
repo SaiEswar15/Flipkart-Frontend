@@ -15,6 +15,7 @@ import CarouselHome from './CarouselHome';
 import CarouselProducts from './CarouselProducts';
 import CarouselProducts2 from './CarouselProducts2';
 import { useNavigate } from "react-router-dom"
+import Navbar from './Navbar';
 
 function Home() {
 
@@ -94,6 +95,7 @@ function Home() {
 
     return (
         <>
+            <Navbar></Navbar>
             <Categories></Categories>
             <CarouselHome showStatus = "false"></CarouselHome>
             <CarouselProducts></CarouselProducts>

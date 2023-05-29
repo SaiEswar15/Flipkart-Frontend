@@ -7,6 +7,7 @@ import StarIcon from '@mui/icons-material/Star';
 import axios from "axios";
 import { apiActions } from '../store/apiSlice';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import Navbar from './Navbar';
 
 
 
@@ -65,6 +66,8 @@ function ProductPage() {
   
   
   return (
+    <>
+    <Navbar></Navbar>
     <div className="product-page-con">
 
       <div className='product-image-con'>
@@ -91,6 +94,7 @@ function ProductPage() {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

@@ -1,4 +1,4 @@
-import Navbar from "./components/Navbar";
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Cart from "./components/Cart";
@@ -11,7 +11,7 @@ export default function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar />
+        
 
         <Routes>
           <Route path="/" exact element={<Home/>} />
