@@ -100,7 +100,7 @@ function Cart() {
         }
         else{
             
-            const totalArray = res.data.map((el)=>{
+            const totalArray = res.data && res.data.map((el)=>{
                 return el.Quantity*el.Price
             })
             totalAmount = totalArray.reduce((total,el)=>{

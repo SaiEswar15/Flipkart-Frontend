@@ -62,36 +62,47 @@ function Home() {
 
     function addToCartHandler(productdata) {
 
-        axios.get("http://localhost:8081/api/v1/cart/cartData")
-          .then((res) => {
-            // console.log(res.data);
-            const data = res.data;
-    
-    
-            let matchedData = data.find((el) => {
-              return productdata._id === el._id
-            })
-    
-            if (matchedData === undefined || matchedData.length < 1) {
-    
-              dispatch(apiActions.addCount())
-    
-              axios.post("http://localhost:8081/api/v1/cart/post", { 
-                _id: productdata._id,
-                Title: productdata.Title, 
-                Price: productdata.Price, 
-                Quantity: 1, 
-                Image: productdata.Image, 
-                Category: productdata.Category 
-              })
-            }
-            else {
-    
-              dispatch(apiActions.addCount())
-              axios.patch(`http://localhost:8081/api/v1/cart/patch/${productdata._id}`)
-            }
+      axios.get("http://localhost:8081/api/v1/cart/cartData",{
+        headers: {
+          'Authorization': 'Bearer ' + token
+        }
+      })
+        .then((res) => {
+          console.log("three")
+          dispatch(apiActions.addCartItemsToState(res.data))
+          let dataToCalculate = res.data;
+  
+          let matchedData = dataToCalculate.find((el) => {
+            return productdata._id === el._id
           })
-      }
+  
+          if (matchedData === undefined || matchedData.length < 1) {
+  
+            dispatch(apiActions.addCount())
+  
+            axios.post("http://localhost:8081/api/v1/cart/post", { 
+              _id: productdata._id,
+              Title: productdata.Title, 
+              Price: productdata.Price, 
+              Quantity: 1, 
+              Image: productdata.Image, 
+              Category: productdata.Category 
+            })
+            .then((res)=>{
+              dispatch(apiActions.addCartItemsToState(res.data))
+            })
+          }
+          else {
+  
+            dispatch(apiActions.addCount())
+            axios.patch(`http://localhost:8081/api/v1/cart/patch/${productdata._id}`)
+            .then((res)=>{
+              dispatch(apiActions.addCartItemsToState(res.data))
+            })
+            
+          }
+        })
+    }
 
     return (
         <>
