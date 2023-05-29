@@ -15,7 +15,7 @@ function Navbar() {
     const dispatch = useDispatch();
 
     const {token,loggedin} = useSelector((state) => state.auth)
-    const {items,counter,searchData} = useSelector((state) => state.api.cartData)
+    const {items,counter,searchData} = useSelector((state) => state.api)
 
     useEffect(() => {
 
