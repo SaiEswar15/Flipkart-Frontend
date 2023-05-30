@@ -31,48 +31,48 @@ function Navbar() {
 
     
 
-    useEffect(()=>{
+    // useEffect(()=>{
 
-        console.log("token before middleware",token)
-        axios.get(`${base_url}/cart/cartData`,{
-            headers: {
-              'Authorization': 'Bearer ' + token
-            }
-          })
-        .then((res)=>
-        {
-            // console.log("one")
-            // dispatch(apiActions.addCartItemsToState(res.data))
-            console.log("token after middleware",res.data)
-            if (res.data === 'Token Not found')
-            {
-                Navigate("/loginpage")
-            }
-            else
-            {
+    //     console.log("token before middleware",token)
+    //     axios.get(`${base_url}/cart/cartData`,{
+    //         headers: {
+    //           'Authorization': 'Bearer ' + token
+    //         }
+    //       })
+    //     .then((res)=>
+    //     {
+    //         // console.log("one")
+    //         // dispatch(apiActions.addCartItemsToState(res.data))
+    //         console.log("token after middleware",res.data)
+    //         if (res.data === 'Token Not found')
+    //         {
+    //             Navigate("/loginpage")
+    //         }
+    //         else
+    //         {
                 
 
-                let quantity = 0;
-                if (res.data.length<1)
-                {
-                    quantity = 0;
-                }
-                else
-                {
-                    const quanArray = res.data && res.data.map((el)=>{
-                        return el.Quantity;
-                    })
-                    // console.log(quanArray)
-                    quantity = quanArray.reduce((total,el)=>{
-                        return total+el;
-                    })
-                }
+    //             let quantity = 0;
+    //             if (res.data.length<1)
+    //             {
+    //                 quantity = 0;
+    //             }
+    //             else
+    //             {
+    //                 const quanArray = res.data && res.data.map((el)=>{
+    //                     return el.Quantity;
+    //                 })
+    //                 // console.log(quanArray)
+    //                 quantity = quanArray.reduce((total,el)=>{
+    //                     return total+el;
+    //                 })
+    //             }
               
-                dispatch(apiActions.postCounter(quantity))
-            }
+    //             dispatch(apiActions.postCounter(quantity))
+    //         }
             
-        })
-    },[dispatch,token,Navigate,items])
+    //     })
+    // },[dispatch,token,Navigate,items])
 
     function logoutHandler()
     {
