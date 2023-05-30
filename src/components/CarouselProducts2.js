@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { apiActions } from '../store/apiSlice';
+import { base_url } from './base';
 
 function CarouselProducts2() {
 
@@ -63,7 +64,7 @@ function CarouselProducts2() {
 
     function productHandler(el) {
 
-        axios.get(`http://localhost:8081/api/v1/products/?category=${el.Category}`,{
+        axios.get(`${base_url}/products/?category=${el.Category}`,{
             headers: {
               'Authorization': 'Bearer ' + token
             }
@@ -88,7 +89,7 @@ function CarouselProducts2() {
     {
         const category1 = "Kitchen Appliances";
         const category2 = "Small Home Appliances";
-        axios.get(`http://localhost:8081/api/v1/products/searchBySubCategory/?category1=${category1}&category2=${category2}`,{
+        axios.get(`${base_url}/products/searchBySubCategory/?category1=${category1}&category2=${category2}`,{
             headers: {
               'Authorization': 'Bearer ' + token
             }

@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { apiActions } from '../store/apiSlice';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import Navbar from './Navbar';
+import { base_url } from './base';
 
 function Cart() {
 
@@ -21,7 +22,7 @@ function Cart() {
 
     const cartHandler = (el)=>
     {
-        axios.delete(`http://localhost:8081/api/v1/cart/delete/${el._id}`)
+        axios.delete(`${base_url}/cart/delete/${el._id}`)
         .then((res=>{
 
             console.log("five")
@@ -41,7 +42,7 @@ function Cart() {
     function addQuantityHandler(productdata) {
 
         
-        axios.patch(`http://localhost:8081/api/v1/cart/patch/${productdata._id}`)
+        axios.patch(`${base_url}/cart/patch/${productdata._id}`)
         .then((res=>{
             dispatch(apiActions.addCartItemsToState(res.data))
             dispatch(apiActions.addCount())
@@ -56,7 +57,7 @@ function Cart() {
         if (el.Quantity>1)
         {
             
-            axios.patch(`http://localhost:8081/api/v1/cart/reduce/${el._id}`)
+            axios.patch(`${base_url}/cart/reduce/${el._id}`)
             .then((res=>{
                 dispatch(apiActions.addCartItemsToState(res.data))
                 dispatch(apiActions.removeQuantity(1))
@@ -68,7 +69,7 @@ function Cart() {
 
         else
         {
-            axios.delete(`http://localhost:8081/api/v1/cart/delete/${el._id}`)
+            axios.delete(`${base_url}/cart/delete/${el._id}`)
             .then((res=>{
                 dispatch(apiActions.addCartItemsToState(res.data))
                 
@@ -81,7 +82,7 @@ function Cart() {
 
     useEffect(()=>{
   
-        axios.get("http://localhost:8081/api/v1/cart/cartData",{
+        axios.get(`${base_url}/cart/cartData`,{
             headers: {
               'Authorization': 'Bearer ' + token
             }

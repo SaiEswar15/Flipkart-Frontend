@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { categoryActions } from '../store/categorySlice';
 import { apiActions } from '../store/apiSlice';
 import { useNavigate } from 'react-router-dom';
+import { base_url } from './base';
 
 function Categories() {
 
@@ -24,7 +25,7 @@ function Categories() {
 
     useEffect(()=>{
 
-        axios.get("http://localhost:8081/api/v1/categories/",{
+        axios.get(`${base_url}/categories/`,{
             headers: {
               'Authorization': 'Bearer ' + token
             }
@@ -50,7 +51,7 @@ function Categories() {
         {
             let category1 = "Kitchen Appliances"
             let category2 = "Small Home Appliances"
-            axios.get(`http://localhost:8081/api/v1/products/searchBySubCategory?category1=${category1}&category2=${category2}`,{
+            axios.get(`${base_url}/products/searchBySubCategory?category1=${category1}&category2=${category2}`,{
                 headers: {
                   'Authorization': 'Bearer ' + token
                 }
@@ -72,7 +73,7 @@ function Categories() {
 
         if (el.category === "Mobiles" || el.category === "Electronics")
         {
-            axios.get(`http://localhost:8081/api/v1/products/?category=${el.category}`,{
+            axios.get(`${base_url}/products/?category=${el.category}`,{
                 headers: {
                   'Authorization': 'Bearer ' + token
                 }
@@ -97,7 +98,7 @@ function Categories() {
         {
             let category1 = "Clothing"
             
-            axios.get(`http://localhost:8081/api/v1/products/?category=${category1}`,{
+            axios.get(`${base_url}/products/?category=${category1}`,{
                 headers: {
                   'Authorization': 'Bearer ' + token
                 }
@@ -119,7 +120,7 @@ function Categories() {
 
         if (el.category === "Top Offers")
         {
-            axios.get(`http://localhost:8081/api/v1/products/searchBySingle`,{
+            axios.get(`${base_url}/products/searchBySingle`,{
                 headers: {
                   'Authorization': 'Bearer ' + token
                 }

@@ -16,6 +16,7 @@ import CarouselProducts from './CarouselProducts';
 import CarouselProducts2 from './CarouselProducts2';
 import { useNavigate } from "react-router-dom"
 import Navbar from './Navbar';
+import { base_url } from './base';
 
 function Home() {
 
@@ -36,7 +37,7 @@ function Home() {
 
     useEffect(() => {
 
-        axios.get("http://localhost:8081/api/v1/items/",{
+        axios.get(`${base_url}/items/`,{
           headers: {
             'Authorization': 'Bearer ' + token
           }
@@ -62,7 +63,7 @@ function Home() {
 
     function addToCartHandler(productdata) {
 
-      axios.get("http://localhost:8081/api/v1/cart/cartData",{
+      axios.get(`${base_url}/cart/cartData`,{
         headers: {
           'Authorization': 'Bearer ' + token
         }
@@ -80,7 +81,7 @@ function Home() {
   
             dispatch(apiActions.addCount())
   
-            axios.post("http://localhost:8081/api/v1/cart/post", { 
+            axios.post(`${base_url}/cart/post`, { 
               _id: productdata._id,
               Title: productdata.Title, 
               Price: productdata.Price, 
@@ -95,7 +96,7 @@ function Home() {
           else {
   
             dispatch(apiActions.addCount())
-            axios.patch(`http://localhost:8081/api/v1/cart/patch/${productdata._id}`)
+            axios.patch(`${base_url}/cart/patch/${productdata._id}`)
             .then((res)=>{
               dispatch(apiActions.addCartItemsToState(res.data))
             })

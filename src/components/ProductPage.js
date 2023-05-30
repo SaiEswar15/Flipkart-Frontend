@@ -8,6 +8,7 @@ import axios from "axios";
 import { apiActions } from '../store/apiSlice';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import Navbar from './Navbar';
+import { base_url } from './base';
 
 
 
@@ -21,7 +22,7 @@ function ProductPage() {
 
   function addToCartHandler(productdata) {
 
-    axios.get("http://localhost:8081/api/v1/cart/cartData",{
+    axios.get(`${base_url}/cart/cartData`,{
       headers: {
         'Authorization': 'Bearer ' + token
       }
@@ -39,7 +40,7 @@ function ProductPage() {
 
           dispatch(apiActions.addCount())
 
-          axios.post("http://localhost:8081/api/v1/cart/post", { 
+          axios.post(`${base_url}/cart/post`, { 
             _id: productdata._id,
             Title: productdata.Title, 
             Price: productdata.Price, 
@@ -54,7 +55,7 @@ function ProductPage() {
         else {
 
           dispatch(apiActions.addCount())
-          axios.patch(`http://localhost:8081/api/v1/cart/patch/${productdata._id}`)
+          axios.patch(`${base_url}/cart/patch/${productdata._id}`)
           .then((res)=>{
             dispatch(apiActions.addCartItemsToState(res.data))
           })

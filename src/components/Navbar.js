@@ -10,7 +10,7 @@ import axios from "axios";
 import {useSelector,useDispatch} from "react-redux";
 import  { apiActions } from '../store/apiSlice';
 import { authActions } from '../store/authSlice';
-
+import { base_url } from './base';
 
 
 function Navbar() {
@@ -29,7 +29,7 @@ function Navbar() {
     useEffect(()=>{
 
         // console.log("token before middleware",token)
-        axios.get("http://localhost:8081/api/v1/cart/cartData",{
+        axios.get(`${base_url}/cart/cartData`,{
             headers: {
               'Authorization': 'Bearer ' + token
             }
@@ -83,7 +83,7 @@ function Navbar() {
         const input = data.get("search");
         console.log(input);
         
-        axios.get(`http://localhost:8081/api/v1/products/?category=${input}`,{
+        axios.get(`${base_url}/products/?category=${input}`,{
             headers: {
               'Authorization': 'Bearer ' + token
             }

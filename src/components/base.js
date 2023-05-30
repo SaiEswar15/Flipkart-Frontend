@@ -1,0 +1,1 @@
+export const base_url = `https://flipkart-backend-dchh.onrender.com/api/v1`;

@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import {useDispatch} from "react-redux";
 import { apiActions } from '../store/apiSlice';
+import { base_url } from './base';
 
 function CarouselProducts() {
 
@@ -69,7 +70,7 @@ function CarouselProducts() {
 
     function productHandler(el)
     {
-        axios.get(`http://localhost:8081/api/v1/products/?category=${el.Category}`,{
+        axios.get(`${base_url}/products/?category=${el.Category}`,{
             headers: {
               'Authorization': 'Bearer ' + token
             }
@@ -92,7 +93,7 @@ function CarouselProducts() {
     function viewAllElectronics()
     {
         console.log("hai")
-        axios.get(`http://localhost:8081/api/v1/products/searchBySingle/?category1=Electronics`,{
+        axios.get(`${base_url}/products/searchBySingle/?category1=Electronics`,{
             headers: {
               'Authorization': 'Bearer ' + token
             }

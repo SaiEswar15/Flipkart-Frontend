@@ -9,6 +9,7 @@ import { apiActions } from '../store/apiSlice';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import Navbar from './Navbar';
 
+
 function SearchPage() {
 
   const searchData = useSelector((state) => {

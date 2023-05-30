@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { authActions } from '../store/authSlice';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { base_url } from './base';
 
 function LoginPage() {
 
@@ -31,7 +32,7 @@ function LoginPage() {
     {
         e.preventDefault();
         console.log(data);
-        axios.post("http://localhost:8081/api/v1/auth/login",data)
+        axios.post(`${base_url}/auth/login`,data)
         .then((res)=>{
             console.log(res.data);
             dispatch(authActions.updateToken(res.data.token))

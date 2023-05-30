@@ -5,6 +5,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
 import { authActions } from '../store/authSlice';
 import { useNavigate } from 'react-router-dom';
+import { base_url } from './base';
 
 function SignupPage() {
 
@@ -35,7 +36,7 @@ function SignupPage() {
     {
         e.preventDefault();
         console.log(data);
-        axios.post("http://localhost:8081/api/v1/auth/signup",data)
+        axios.post(`${base_url}/auth/signup`,data)
         .then((res)=>{
             console.log(res.data);
             dispatch(authActions.update(res.data))
