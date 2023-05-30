@@ -20,6 +20,10 @@ function Navbar() {
 
     const token = useSelector((state)=>state.auth.token)
     console.log("token", token)
+    if (token === "")
+    {
+        Navigate("/loginPage");
+    }
     const searchData = useSelector((state)=>state.api.searchData)
     const counter = useSelector((state)=>state.api.counter)
     const loggedin = useSelector((state)=>state.auth.loggedin)
