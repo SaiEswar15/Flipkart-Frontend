@@ -80,7 +80,7 @@ function Home() {
   
           if (matchedData === undefined || matchedData.length < 1) {
   
-            // dispatch(apiActions.addCount())
+            dispatch(apiActions.addCount())
   
             axios.post(`${base_url}/cart/post`, { 
               _id: productdata._id,
