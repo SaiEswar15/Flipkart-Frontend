@@ -1,6 +1,6 @@
 //Navbar.js
 
-import React,{useEffect} from 'react'
+import React from 'react'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from '@mui/icons-material/Search';
 import "./Navbar.css";
@@ -27,7 +27,7 @@ function Navbar() {
     const searchData = useSelector((state)=>state.api.searchData)
     const counter = useSelector((state)=>state.api.counter)
     const loggedin = useSelector((state)=>state.auth.loggedin)
-    const items = useSelector((state)=>state.api.cartData)
+    // const items = useSelector((state)=>state.api.cartData)
 
     
 
