@@ -1,1 +1,1 @@
-export const base_url = "http://localhost:8081/api/v1";
+export const base_url = "https://flipkart-backend-dchh.onrender.com/api/v1";
