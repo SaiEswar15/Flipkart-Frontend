@@ -45,6 +45,7 @@ function Home() {
             .then((res) => {
               if (res.data === 'Token Not found')
             {
+              console.log("token not found entered")
                 Navigate("/loginpage")
             }
             else

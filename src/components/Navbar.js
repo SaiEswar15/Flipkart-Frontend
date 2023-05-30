@@ -19,6 +19,7 @@ function Navbar() {
     const dispatch = useDispatch();
 
     const token = useSelector((state)=>state.auth.token)
+    console.log("token", token)
     const searchData = useSelector((state)=>state.api.searchData)
     const counter = useSelector((state)=>state.api.counter)
     const loggedin = useSelector((state)=>state.auth.loggedin)
@@ -28,7 +29,7 @@ function Navbar() {
 
     useEffect(()=>{
 
-        // console.log("token before middleware",token)
+        console.log("token before middleware",token)
         axios.get(`${base_url}/cart/cartData`,{
             headers: {
               'Authorization': 'Bearer ' + token
@@ -38,7 +39,7 @@ function Navbar() {
         {
             // console.log("one")
             // dispatch(apiActions.addCartItemsToState(res.data))
-            // console.log("token after middleware",res.data)
+            console.log("token after middleware",res.data)
             if (res.data === 'Token Not found')
             {
                 Navigate("/loginpage")
