@@ -1,0 +1,23 @@
+.successpage-con{
+    
+    width : 99vw;
+    margin-top: 25vh;
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.successpage-con p{
+    font-size: 30px;
+}
+
+.successpage-btn{
+    margin-top: 20px;
+    background-color: blue;
+    width : 10vw;
+    color: white;
+    padding: 5px;
+    border: 0px;
+    
+}

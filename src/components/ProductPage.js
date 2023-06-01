@@ -9,6 +9,7 @@ import { apiActions } from '../store/apiSlice';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import Navbar from './Navbar';
 import { base_url } from './base';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -18,7 +19,7 @@ function ProductPage() {
   const token= useSelector((state) => state.auth.token);
 
   const dispatch = useDispatch();
-  
+  const Navigate = useNavigate(); 
 
   function addToCartHandler(productdata) {
 
@@ -64,6 +65,50 @@ function ProductPage() {
       })
   }
 
+  function addToWishHandler(productdata) {
+
+    console.log("entered add to wishlist handler");
+    axios.get(`${base_url}/wishlist/wishlistData`,{
+      headers: {
+        'Authorization': 'Bearer ' + token
+      }
+    })
+      .then((res) => {
+        console.log("orders data")
+        console.log(res.data)
+        // dispatch(apiActions.addCartItemsToState(res.data))
+        let dataToCalculate = res.data;
+
+        let matchedData = dataToCalculate.find((el) => {
+          return productdata._id === el._id
+        })
+
+        if (matchedData === undefined || matchedData.length < 1) {
+
+          
+          console.log("No data so post ")
+          axios.post(`${base_url}/wishlist/post`, { 
+            _id: productdata._id,
+            Title: productdata.Title, 
+            Price: productdata.Price,
+            Image: productdata.Image, 
+            Category: productdata.Category 
+          },{
+            headers: {
+              'Authorization': 'Bearer ' + token
+            }
+          })
+          .then((res)=>{
+            console.log("after posting");
+            console.log(res.data);
+            dispatch(apiActions.addOrdersItemsToState(res.data))
+            Navigate("/wishlist")
+          })
+        }
+        
+      })
+  }
+
   
   
   return (
@@ -77,7 +122,7 @@ function ProductPage() {
         </div>
         <div className="image-below-buttons">
           <button className="addtocart-btn" onClick={() => { addToCartHandler(productdata) }}>Add to cart</button>
-          <button className='addtowishlist-btn'>Add to wishlist</button>
+          <button className='addtowishlist-btn' onClick={() => { addToWishHandler(productdata) }}>Add to wishlist</button>
         </div>
       </div>
 

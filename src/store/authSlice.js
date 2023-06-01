@@ -8,7 +8,8 @@ const authSlice = createSlice({
         loginNotification : "",
         token : "",
         loggedin : false,
-        username : "guest"
+        username : "guest",
+        mouseover : "none"
     },
     reducers : {
 
@@ -52,6 +53,13 @@ const authSlice = createSlice({
             return {
                 ...state,
                 token : action.payload
+            }
+        },
+        changeMouseover(state,action)
+        {
+            return {
+                ...state,
+                mouseover : action.payload
             }
         }
     }

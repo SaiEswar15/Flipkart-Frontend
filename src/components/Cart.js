@@ -14,6 +14,7 @@ import { base_url } from './base';
 function Cart() {
 
     const dispatch = useDispatch();
+    // const Navigate = useNavigate();
 
     const items = useSelector((state)=>state.api.cartData)
     const counter = useSelector((state)=>state.api.counter)
@@ -79,6 +80,27 @@ function Cart() {
             
         }
     }
+
+    // function placeorderHandler()
+    // {
+    //     if (items)
+    //     {
+    //         console.log(items)
+    //         axios.post(`${base_url}/orders/post`,items,{
+    //             headers: {
+    //               'Authorization': 'Bearer ' + token
+    //             }
+    //           })
+    //           .then((res)=>{
+    //             console.log("after posting");
+    //             console.log(res.data);
+    //             dispatch(apiActions.addOrderedProducts(res.data))
+                
+    //           })
+    //     }
+    //     Navigate("/success")
+
+    // }
 
     useEffect(()=>{
   
@@ -157,7 +179,7 @@ function Cart() {
             <div className = "summary" >Summary</div>
             <div className = "ti">Total items : <span className = "ti-color">{counter}</span></div>
             <div className = "ti">Total amount : <span className = "ti-color"> <CurrencyRupeeIcon/><span>{total}</span></span></div>
-            <Link to = "/success"><button className = "place-order">Place your Order</button></Link>
+            <Link to = "/success"><button className = "place-order" >Place your Order</button></Link>
         </div>
     </div>
     </>

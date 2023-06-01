@@ -8,7 +8,9 @@ const apiSlice = createSlice({
         productData: {},
         cartData : [],
         totalPrice : 0,
-        counter : 0
+        counter : 0,
+        ordersData: [],
+        ordersPlacedData : []
     },
     reducers : {
 
@@ -41,6 +43,22 @@ const apiSlice = createSlice({
             return {
                 ...state,
                 cartData : action.payload
+            }
+        },
+
+        addOrdersItemsToState(state,action)
+        {
+            return {
+                ...state,
+                ordersData : action.payload
+            }
+        },
+
+        addOrderedProducts(state,action)
+        {
+            return {
+                ...state,
+                ordersPlacedData : action.payload
             }
         },
 

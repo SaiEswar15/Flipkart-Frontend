@@ -106,6 +106,36 @@
     
 }
 
+.navbar-dropdown{
+    position: relative;
+    background-color: blueviolet;
+}
+
+.navbar-auth-dropdown{
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    position: absolute;
+    top : 48px;
+    left : 20px;
+    width: 8vw;
+}
+
+.navbar-auth-dropdown link{
+    text-decoration: none;
+    color : white;
+}
+
+.navbar-auth-dropdown-button{
+    text-decoration: none;
+    background-color: blue;
+    color : white;
+    border: 0px;
+    padding : 5px;
+    margin-bottom: 5px;
+}
+
 
 
 

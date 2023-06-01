@@ -6,6 +6,9 @@ import SearchPage from "./components/SearchPage";
 import ProductPage from "./components/ProductPage";
 import LoginPage from "./components/LoginPage";
 import SignupPage from "./components/SignupPage";
+import Success from "./components/Success";
+import WishlistPage from "./components/WishlistPage";
+// import OrdersPage from "./components/OrdersPage";
 
 export default function App() {
   return (
@@ -20,6 +23,9 @@ export default function App() {
           <Route path="/productpage" exact element={<ProductPage/>}/>
           <Route path="/loginpage" exact element={<LoginPage/>}/>
           <Route path="/signuppage" exact element={<SignupPage/>}/>
+          <Route path="/success" exact element={<Success/>}/>
+          <Route path="/wishlist" exact element={<WishlistPage/>} />
+          {/* <Route path="/orders" exact element={<OrdersPage/>} /> */}
         </Routes>
       </BrowserRouter>
     </>

@@ -20,15 +20,15 @@ function Navbar() {
 
     const token = useSelector((state)=>state.auth.token)
     console.log("token", token)
-    if (token === "")
-    {
-        Navigate("/loginPage");
-    }
+    // if (token === "")
+    // {
+    //     Navigate("/loginPage");
+    // }
     const searchData = useSelector((state)=>state.api.searchData)
     const counter = useSelector((state)=>state.api.counter)
     const loggedin = useSelector((state)=>state.auth.loggedin)
     const items = useSelector((state)=>state.api.cartData)
-
+    const change = useSelector((state)=>state.auth.mouseover)
     
 
     useEffect(()=>{
@@ -43,7 +43,7 @@ function Navbar() {
         {
             // console.log("one")
             // dispatch(apiActions.addCartItemsToState(res.data))
-            console.log("token after middleware",res.data)
+            console.log("token after middleware",items)
             if (res.data === 'Token Not found')
             {
                 Navigate("/loginpage")
@@ -106,9 +106,21 @@ function Navbar() {
                 Navigate("/searchpage");
             }
             
-        })
+        }) 
+    }
 
-        
+    function mouseover()
+    {
+        dispatch(authActions.changeMouseover("block"))
+    }
+
+    function mouseout()
+    {
+        dispatch(authActions.changeMouseover("none"))
+    }
+
+    let styling1 = {
+        display : change
     }
   return (
   <>
@@ -128,9 +140,23 @@ function Navbar() {
             </div>
         {loggedin ?
         
-        <div className = "login-con">
+        <div className='navbar-dropdown' onMouseOver={mouseover} onMouseOut={mouseout}>
+            <div className = "login-con">
                 <button onClick = {logoutHandler}>Logout</button>
+            </div>
+
+            <div className='navbar-auth-dropdown'style = {styling1}>
+                {/* <Link to="/orders">
+                    <button className='navbar-auth-dropdown-button'>Your Orders</button>
+                </Link> */}
+                <Link to="/wishlist">
+                    <button className='navbar-auth-dropdown-button'>Your Wishlist</button>
+                </Link>
+                
+            </div>
         </div>
+        
+        
         :
         <Link to="/loginpage">
             <div className = "login-con">
@@ -139,6 +165,8 @@ function Navbar() {
         </Link>
         
         }
+
+        
 
         <Link to ="/cart" className = "link">
             <div className = "cart-con">

@@ -36,7 +36,7 @@ function LoginPage() {
         .then((res)=>{
             console.log(res.data);
             dispatch(authActions.updateToken(res.data.token))
-            
+            // dispatch(authActions.updateUsername(res.data.updateUsername))
             dispatch(authActions.status(true))
             Navigate("/")
             
@@ -50,7 +50,7 @@ function LoginPage() {
                     <h1>Login</h1>
                     <p>Get access to your orders, wishlist and cart</p>
                 </div>
-                <form className='loginpage-form'autoComplete='off' onSubmit = {loginHandler}>
+                <form className='loginpage-form' onSubmit = {loginHandler}>
                     <input type="text" placeholder="Enter your email" name="email" onChange = {changeHandler} required/>
                     <input type="password" placeholder="Enter your password" name="password" onChange = {changeHandler} required/>
                     <button>Login</button>
