@@ -7,6 +7,7 @@ import { apiActions } from '../store/apiSlice';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import { base_url } from './base';
 import "./WishlistPage.css";
+import { useNavigate } from 'react-router-dom';
 
 function WishlistPage() {
 
@@ -14,6 +15,7 @@ function WishlistPage() {
     const token = useSelector((state)=>state.auth.token)
 
     const dispatch = useDispatch()
+    const Navigate = useNavigate()
 
     useEffect(()=>{
   
@@ -40,10 +42,33 @@ function WishlistPage() {
             dispatch(apiActions.addOrdersItemsToState(res.data))
             
             
-        }))
-
-        
+        })) 
     }
+
+    function productHandler(productdata) {
+      axios.get(`${base_url}/items/`, {
+          headers: {
+              'Authorization': 'Bearer ' + token
+          }
+      })
+          .then((res) => {
+              if (res.data === 'Token Not found') {
+                  console.log("token not found entered")
+                  Navigate("/loginpage")
+              }
+              else {
+                  let matchedData = res.data.find((el) => {
+                      return productdata._id === el._id
+                  })
+
+                  dispatch(apiActions.addToProduct(matchedData))
+                  Navigate("/productpage")
+              }
+
+
+          })
+
+  }
 
   return (
     <>
@@ -53,7 +78,7 @@ function WishlistPage() {
             <p className='wishlist-heading'>Your Wishlist</p>
             {items && items.map((el)=>{
             return (
-            <div className = "wishlist-singleitem-con" key = {el._id}>
+            <div className = "wishlist-singleitem-con" key = {el._id} onClick={() => { productHandler(el) }}>
                 <div className = "wishlist-image-con">
                     <img src = {el.Image} alt = "product" height = "100px"/>
                 </div>
