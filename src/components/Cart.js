@@ -169,13 +169,13 @@ function Cart() {
                     <p className='heading'>Your Items</p>
                     {items && items.map((el) => {
                         return (
-                            <div className="singleitem-con" key={el._id} onClick={() => { productHandler(el) }}>
-                                <div className="image-con">
+                            <div className="singleitem-con" key={el._id}>
+                                <div className="image-con" onClick={() => { productHandler(el) }} >
                                     <img src={el.Image} alt="product" height="100px" />
                                 </div>
                                 <div className="details-con">
                                     <div>
-                                        <p className="p cartitems-title">{el.Title}</p>
+                                        <p className="p cartitems-title" onClick={() => { productHandler(el) }}>{el.Title}</p>
 
 
                                         <button className="quantity-btn1" onClick={() => { addQuantityHandler(el) }}>+</button>
