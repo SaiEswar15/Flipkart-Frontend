@@ -78,13 +78,13 @@ function WishlistPage() {
             <p className='wishlist-heading'>Your Wishlist</p>
             {items && items.map((el)=>{
             return (
-            <div className = "wishlist-singleitem-con" key = {el._id} onClick={() => { productHandler(el) }}>
-                <div className = "wishlist-image-con">
+            <div className = "wishlist-singleitem-con" key = {el._id}>
+                <div className = "wishlist-image-con" onClick={() => { productHandler(el) }}>
                     <img src = {el.Image} alt = "product" height = "100px"/>
                 </div>
                 <div className = "wishlist-details-con">
                     <div>
-                        <p className = "p wishlist-title">{el.Title}</p>
+                        <p className = "p wishlist-title" onClick={() => { productHandler(el) }}>{el.Title}</p>
                         
                     
                         

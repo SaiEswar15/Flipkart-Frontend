@@ -5,7 +5,7 @@ const authSlice = createSlice({
     initialState : {
         signupNotification : "",
         signupNotificationColor : "",
-        loginNotification : "",
+        loginNotification : "welcome",
         token : "",
         loggedin : false,
         username : "guest",

@@ -27,11 +27,17 @@ function Navbar() {
     const searchData = useSelector((state)=>state.api.searchData)
     const counter = useSelector((state)=>state.api.counter)
     const loggedin = useSelector((state)=>state.auth.loggedin)
-    const items = useSelector((state)=>state.api.cartData)
+    // const items = useSelector((state)=>state.api.cartData)
     const change = useSelector((state)=>state.auth.mouseover)
     
 
     useEffect(()=>{
+
+        if(!loggedin)
+        {
+            console.log("login",loggedin)
+            Navigate("/loginpage")
+        }
 
         console.log("token before middleware",token)
         axios.get(`${base_url}/cart/cartData`,{
@@ -43,13 +49,15 @@ function Navbar() {
         {
             // console.log("one")
             // dispatch(apiActions.addCartItemsToState(res.data))
-            console.log("token after middleware",items)
+            // console.log("token after middleware",items)
             if (res.data === 'Token Not found')
             {
                 Navigate("/loginpage")
             }
             else
             {
+                
+                dispatch(apiActions.addCartItemsToState(res.data))
                 
 
                 let quantity = 0;
@@ -72,7 +80,7 @@ function Navbar() {
             }
             
         })
-    },[dispatch,token,Navigate,items])
+    },[dispatch,token,Navigate,loggedin])
 
     function logoutHandler()
     {

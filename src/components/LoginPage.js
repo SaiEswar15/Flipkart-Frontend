@@ -35,11 +35,22 @@ function LoginPage() {
         axios.post(`${base_url}/auth/login`,data)
         .then((res)=>{
             console.log(res.data);
-            dispatch(authActions.updateToken(res.data.token))
-            // dispatch(authActions.updateUsername(res.data.updateUsername))
-            dispatch(authActions.status(true))
-            Navigate("/")
-            
+
+            if(res.data === "User Not Found")
+            {
+                dispatch(authActions.updateLogin(res.data))
+            }
+            else if(res.data === "Invalid credentials")
+            {
+                dispatch(authActions.updateLogin(res.data))
+            }
+            else
+            {
+                dispatch(authActions.updateToken(res.data.token))
+                // dispatch(authActions.updateUsername(res.data.updateUsername))
+                dispatch(authActions.status(true))
+                Navigate("/")
+            }
         })
         
     }
